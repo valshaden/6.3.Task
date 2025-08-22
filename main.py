@@ -1,10 +1,10 @@
 # 6.3. Задание
-### Задание: Доработка калькулятора и тестов 
+# Задание: Доработка калькулятора и тестов 
 # 1. Добавьте новую функцию в модуль calculator_logic.py: 
 #   - Реализуйте функцию square(x), которая принимает число и возвращает его квадрат. 
 # 2. Доработайте тесты в файле с тестами (test_calculator.py): 
 #   - Напишите тесты для функции square(), проверяющие: 
-##     - Корректность вычисления квадрата (положительные, отрицательные числа, ноль).
+#     - Корректность вычисления квадрата (положительные, отрицательные числа, ноль).
 
 # Основной файл main
 
@@ -13,18 +13,22 @@ from tkinter import ttk
 import calculator_logic as c
 
 def calc():
-    if oper == 'square':
-        result = c.square(first)
-    else:
-        second = float(entry.get())
-        if oper == '+':
-            result = c.add(first, second)
-        elif oper == '-':
-            result = c.subtract(first, second)
-        elif oper == '*':
-            result = c.multiply(first, second)
-        elif oper == '/':
-            result = c.divide(first, second)
+    second = float(entry.get())
+    if oper == '+':
+        result = c.add(first, second)
+    elif oper == '-':
+        result = c.subtract(first, second)
+    elif oper == '*':
+        result = c.multiply(first, second)
+    elif oper == '/':
+        result = c.divide(first, second)
+    entry.delete(0, END)
+    entry.insert(0, str(result))
+
+# Кнопки операций вычисления квадрата
+def calc_square():
+    value = float(entry.get())
+    result = c.square(value)
     entry.delete(0, END)
     entry.insert(0, str(result))
 
@@ -66,8 +70,8 @@ ttk.Button(text="-", command=lambda: set_operation('-')).grid(row=2, column=3)
 ttk.Button(text="*", command=lambda: set_operation('*')).grid(row=3, column=3)
 ttk.Button(text="/", command=lambda: set_operation('/')).grid(row=4, column=3)
 
-# Кнопка операций вычисления квадрата
-ttk.Button(text="x²", command=lambda: set_operation('square')).grid(row=5, column=3)
+# Кнопки операций вычисления квадрата
+ttk.Button(text="x²", command=calc_square).grid(row=5, column=3)
 
 # Кнопка равно и очистки
 ttk.Button(text="=", command=calc).grid(row=4, column=2)
