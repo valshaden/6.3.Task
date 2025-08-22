@@ -1,11 +1,4 @@
-# 5.3.1. Файл с функциями
-# 5.3.2. Основной файл main
-# 5.3.3. Метод grid 
-# 5.3.4. Создаем интерфейс
-# 5.3.5. Отладка программы
-# 5.3.6. Unit-тесты
-
-# Юнит тесты создаем файл test_calculator_logic.py
+# Юнит тесты
 
 import calculator_logic as calc
 
@@ -26,7 +19,6 @@ def test_multiply():
 
 def test_divide():
     assert calc.divide(10, 5) == 2
-
     # Проверка исключения при делении на ноль
     #try:
     #    calc.divide(10, 0)
@@ -37,8 +29,14 @@ def test_divide():
     assert calc.divide(-1, 1) == -1
     assert calc.divide(-1, -1) == 1
 
+def test_square():
+    assert calc.square(5) == 25
+    assert calc.square(-3) == 9
+    assert calc.square(0) == 0
+
 test_add()
 test_subtract()
 test_multiply()
 test_divide()
+test_square()
 print("Все тесты пройдены успешно!")
